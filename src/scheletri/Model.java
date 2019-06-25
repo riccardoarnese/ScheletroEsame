@@ -6,33 +6,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.attribute.standard.RequestingUserName;
+
 public class Model {
 	
-	// EDITOR
+	// EDITOR per il completamento automatico
 	String string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._";
 	
 	private EventsDao dao;
-	private Map<Integer,District> dMap;
+	private Map<Integer,District> idMap;
 	private Graph<District,DefaultWeightedEdge> graph;
 	
 	// Recursion
 	private List<E> best;
 	
-	
+	//Inizializzo model
 	public Model() {
 		dao  = new EventsDao();
 		dMap = new HashMap<>();
 	}
 	
+	//Prendere lista degli anni
 	public List<Year> getYearsList(){
 		return dao.yearsList();
 	}
 	
-	public void buildGraph() {
+	public void creaGrafo() {
 		graph = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
 	}
 	
-	public void init() {
+	public void recursionI() {
 		best = new ArrayList<>();
 		List<E> partial = new ArrayList<>();
 		
@@ -41,14 +44,17 @@ public class Model {
 	
 	private void recursion(partial) {
 		
+		//Condizione di terminazione
 		if () {
 			best = new ArrayList<>(partial);
 			return;
 		}
 		
+		//Ramo da troncare per qualche motivo
 		if ( )
 			return;
 		
+		//Caso intermedio
 		for ( ) {
 			
 			partial.add();
@@ -57,12 +63,14 @@ public class Model {
 		}
 	}
 	
+	//Return graph
 	public Graph<District, DefaultWeightedEdge> getGraph() {
-		return graph;
+		return this.graph;
 	}
 
+	//Return map
 	public Map<Integer, District> getdMap() {
-		return dMap;
+		return idMap;
 	}
 
 }
