@@ -18,33 +18,3 @@
 
 //Selezionare tutti gli eventi riportati in quell'anno, quel mese e quel giorno
 "SELECT * FROM events WHERE Year(reported_date)=? AND Month(reported_date)=? AND Day(reported_date)=?"
-
-//Scheletro metodo DAO
-public List<Qualcosa> nomeMetodo(){
-		
-final String sql = "" ;
-		
-List<Qualcosa> result = new ArrayList<>();
-		
-try {
-Connection conn = DBConnect.getConnection() ;
-PreparedStatement st = conn.prepareStatement(sql) ;
-			
-//Set parameter
-	
-//Execute Query		
-ResultSet res = st.executeQuery() ;
-			
-while(res.next()) {
- 
-//Faccio cose
-							
-} 
-			
-conn.close();
-return result ;
-
-} catch (SQLException e) {
-System.out.println("Errore DB: "+e);
-}
-}
