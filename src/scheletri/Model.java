@@ -8,14 +8,14 @@ import java.util.Map;
 
 import javax.print.attribute.standard.RequestingUserName;
 
-public class Model {
+public class Model<E> {
 	
 	// EDITOR per il completamento automatico
 	String string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._";
 	
 	private EventsDao dao;
-	private Map<Integer,District> idMap;
-	private Graph<District,DefaultWeightedEdge> graph;
+	private Map<Integer,E> idMap;
+	private Graph<E,DefaultWeightedEdge> grafo;
 	
 	// Recursion
 	private List<E> best;
@@ -23,7 +23,7 @@ public class Model {
 	//Inizializzo model
 	public Model() {
 		dao  = new EventsDao();
-		dMap = new HashMap<>();
+		idMap = new HashMap<>();
 	}
 	
 	//Prendere lista degli anni
@@ -32,21 +32,29 @@ public class Model {
 	}
 	
 	public void creaGrafo() {
-		graph = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+		
+		grafo = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+		
+		
+		
+		System.out.println("GRAFO CREATO!");
+		System.out.println("#VERTICI: "+this.grafo.vertexSet().size());
+		System.out.println("#ARCHI: "+this.grafo.edgeSet().size());
+		
 	}
 	
 	public void recursionI() {
 		best = new ArrayList<>();
-		List<E> partial = new ArrayList<>();
+		List<E> parziale = new ArrayList<>();
 		
-		recursion(partial);
+		recursion(parziale);
 	}
 	
-	private void recursion(partial) {
+	private void recursion(List<E> parziale) {
 		
 		//Condizione di terminazione
 		if () {
-			best = new ArrayList<>(partial);
+			best = new ArrayList<>(parziale);
 			return;
 		}
 		
@@ -64,12 +72,12 @@ public class Model {
 	}
 	
 	//Return graph
-	public Graph<District, DefaultWeightedEdge> getGraph() {
-		return this.graph;
+	public Graph<E, DefaultWeightedEdge> getGrafo() {
+		return this.grafo;
 	}
 
 	//Return map
-	public Map<Integer, District> getdMap() {
+	public Map<Integer, E> getdMap() {
 		return idMap;
 	}
 
