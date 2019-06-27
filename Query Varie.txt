@@ -18,3 +18,14 @@
 
 //Selezionare tutti gli eventi riportati in quell'anno, quel mese e quel giorno
 "SELECT * FROM events WHERE Year(reported_date)=? AND Month(reported_date)=? AND Day(reported_date)=?"
+
+//QUERY esame precedente
+SELECT COUNT(*), e.offense_type_id, e1.offense_type_id
+FROM EVENTS e, EVENTS e1
+WHERE e.district_id = e1.district_id (Condizione di join)
+AND YEAR(e.reported_date)=2014 (controllo data tabella1)
+AND YEAR(e1.reported_date)=2014 (controllo data tabella2)
+AND e.offense_category_id = "larceny" (controllo tabella1 categoria di crimine)
+AND e1.offense_category_id = "larceny" (controllo tabella2 categoria di crimine)
+AND e.offense_type_id > e1.offense_type_id (per eliminare duplicati)
+GROUP BY e.offense_type_id, e1.offense_type_id (condizione di raggruppamento)
